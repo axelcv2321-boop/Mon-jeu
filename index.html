@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte - Mon Jeu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-box">
+            <h1>Créer un compte</h1>
+            <p class="subtitle">Rejoignez notre communauté</p>
+
+            <!-- Google Sign-In -->
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with" data-shape="rectangular" data-logo_alignment="left"></div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="signupForm">
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">📧 Email</label>
+                    <input type="email" id="email" placeholder="exemple@email.com" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">🔐 Mot de passe</label>
+                    <input type="password" id="password" placeholder="Minimum 8 caractères" required>
+                    <div class="password-strength">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <p class="strength-text" id="strengthText"></p>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword">🔐 Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+                    <span class="error-message" id="confirmError"></span>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></label>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    ✅ Compte créé avec succès !
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-signup">S'inscrire</button>
+            </form>
+
+            <!-- Login Link -->
+            <p class="login-link">
+                Vous avez déjà un compte ? <a href="login.html">Se connecter</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.querySelector('.g_id_signin'),
+                { theme: 'outline', size: 'large' }
+            );
+        };
+    </script>
+</body>
+</html>
